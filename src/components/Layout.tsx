@@ -49,7 +49,7 @@ function SiteHeader() {
   }, [])
 
   return (
-    <header id="top" className={`site-head${scrolled ? ' is-scrolled' : ''}`}>
+    <header className={`site-head${scrolled ? ' is-scrolled' : ''}`}>
       <div className="nav wrap">
         <NavLink to="/" className="brand" aria-label="Favour Nwachukwu, home">
           favour
@@ -106,6 +106,7 @@ export function Layout() {
   return (
     <>
       <ScrollToTop />
+      <div id="top" />
       <a className="skip-link" href="#main">
         Skip to content
       </a>
