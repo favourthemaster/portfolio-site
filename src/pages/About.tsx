@@ -36,7 +36,7 @@ export function About() {
         <header className="page-head wrap">
           <span className="section-label">About</span>
           <h1 className="page-title" style={{ marginTop: 16 }}>
-            I just build and ship shii.
+            I just build and ship shiii.
           </h1>
         </header>
 
