@@ -35,7 +35,7 @@ export function Home() {
             <img className="avatar" src="/avatar.jpg" alt="" width="460" height="460" />
           </p>
           <p className="hero-line">
-            I build learning tools and payment rails
+            I just build and ship shiii
             <span className="cluster">
               {featuredProjects.map((project, index) => {
                 const [rotate, lift, z] = clusterRotations[index]
@@ -53,7 +53,6 @@ export function Home() {
               })}
             </span>
           </p>
-          <p className="hero-line">I also build developer tools.</p>
           <p className="hero-line">Mostly Go, Flutter, and TypeScript. Based in Lagos, Nigeria.</p>
           <p className="hero-note">
             <Link className="text-link" to="/stack">
