@@ -61,8 +61,8 @@ export function About() {
               because it was hard to turn knowledge into courses.
             </p>
             <p className="about-copy">
-              Most of my time goes into retries, logs, migrations, and deploys. That work decides
-              whether an app stays up after launch.
+              Most of my time goes into thinking about the product. I use AI to get the
+              implementation working.
             </p>
           </div>
 
