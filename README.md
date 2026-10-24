@@ -35,7 +35,7 @@ The homepage is [`src/pages/Home.tsx`](src/pages/Home.tsx). Shared sections live
 The app is a client-side router, so every route must fall back to `index.html`.
 
 - **Vercel**: `vercel.json` already rewrites all paths to `index.html`.
-- **Netlify / Cloudflare Pages**: `public/_redirects` handles the fallback.
+- **Cloudflare Workers**: the platform's SPA fallback handles client-side routes.
 - **Other hosts**: configure an SPA fallback to `/index.html`.
 
 Set the production domain in the `og:url`/`og:image` tags in `index.html` once the site has
