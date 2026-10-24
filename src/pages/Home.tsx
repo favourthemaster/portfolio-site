@@ -25,7 +25,7 @@ export function Home() {
     <>
       <PageMeta
         title="Favour Nwachukwu · Software Engineer"
-        description="Favour Nwachukwu is a software engineer in Lagos, Nigeria. He builds learning tools, payment rails, and developer tools."
+        description="Favour Nwachukwu is a software engineer in Lagos, Nigeria. He builds mobile applications, distributed backend systems, and developer tools."
       />
 
       <div className="page">

@@ -85,7 +85,7 @@ export const projects: Project[] = [
     category: 'Product',
     role: 'Product, backend',
     status: 'In development',
-    tagline: 'Payment rails for AI agents.',
+    tagline: 'Autonomous payments for AI agents.',
     card: 'A payment API for AI agents, with limits set by the person who owns the money.',
     summary:
       'A payment layer for AI agents. The agent requests a payment; a policy layer checks the amount, recipient, and identity before money moves.',

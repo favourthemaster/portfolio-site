@@ -6,48 +6,118 @@
     <title>Favour Nwachukwu · Software Engineer</title>
     <meta
       name="description"
-      content="Favour Nwachukwu is a software engineer in Lagos, Nigeria. He builds learning tools, payment rails, and developer tools."
+      content="Favour Nwachukwu is a software engineer in Lagos, Nigeria. He builds mobile applications, distributed backend systems, and developer tools."
     />
     <meta name="author" content="Favour Nwachukwu" />
     <meta name="theme-color" content="#fbfaf6" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nwachukwufavour.me" />
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nwachukwufavour.me" />
     <meta property="og:site_name" content="Favour Nwachukwu" />
     <meta property="og:title" content="Favour Nwachukwu · Software Engineer" />
     <meta
       property="og:description"
-      content="Learning tools, payment rails, and developer tools. Built in Lagos, Nigeria."
+      content="Software engineer building mobile applications, backend services, and developer tools. Based in Lagos, Nigeria."
     />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://nwachukwufavour.me/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Favour Nwachukwu · software engineer in Lagos, Nigeria."
+      content="Favour Nwachukwu · Software Engineer in Lagos, Nigeria"
     />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@favour_dmaster" />
+    <meta name="twitter:creator" content="@favour_dmaster" />
     <meta name="twitter:title" content="Favour Nwachukwu · Software Engineer" />
     <meta
       name="twitter:description"
-      content="Learning tools, payment rails, and developer tools. Built in Lagos, Nigeria."
+      content="Software engineer building mobile applications, backend services, and developer tools. Based in Lagos, Nigeria."
     />
-    <meta name="twitter:image" content="/og.png" />
+    <meta name="twitter:image" content="https://nwachukwufavour.me/og.png" />
     <meta
       name="twitter:image:alt"
-      content="Favour Nwachukwu · software engineer in Lagos, Nigeria."
+      content="Favour Nwachukwu · Software Engineer in Lagos, Nigeria"
     />
+
+    <!-- Favicons & App Manifest -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://nwachukwufavour.me/#website",
+          "url": "https://nwachukwufavour.me",
+          "name": "Favour Nwachukwu",
+          "description": "Software engineer in Lagos, Nigeria. Building mobile applications, backend systems, and developer tools.",
+          "publisher": {
+            "@id": "https://nwachukwufavour.me/#person"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://nwachukwufavour.me",
+          "url": "https://nwachukwufavour.me",
+          "name": "Favour Nwachukwu · Software Engineer",
+          "description": "Favour Nwachukwu is a software engineer in Lagos, Nigeria. He builds mobile applications, distributed backend systems, and developer tools.",
+          "isPartOf": {
+            "@id": "https://nwachukwufavour.me/#website"
+          },
+          "about": {
+            "@id": "https://nwachukwufavour.me/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://nwachukwufavour.me/#person",
+          "name": "Favour Nwachukwu",
+          "url": "https://nwachukwufavour.me",
+          "image": "https://nwachukwufavour.me/avatar.jpg",
+          "jobTitle": "Software Engineer",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lagos",
+            "addressCountry": "Nigeria"
+          },
+          "sameAs": [
+            "https://github.com/favourthemaster",
+            "https://x.com/favour_dmaster",
+            "https://linkedin.com/in/favour-nwachukwu-972b3633a"
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <h1 class="sr-only">Favour Nwachukwu · Software Engineer</h1>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
