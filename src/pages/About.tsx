@@ -36,7 +36,7 @@ export function About() {
         <header className="page-head wrap">
           <span className="section-label">About</span>
           <h1 className="page-title" style={{ marginTop: 16 }}>
-            I build learning tools and payment rails.
+            I just build and ship shii.
           </h1>
         </header>
 
