@@ -20,6 +20,7 @@ const clusterRotations = [
 ] as const
 
 export function Home() {
+  // Keep the hero short; the work rows carry the detail.
   return (
     <>
       <PageMeta
