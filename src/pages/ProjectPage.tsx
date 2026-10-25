@@ -1,9 +1,40 @@
+import { Fragment } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { CoverArt } from '../components/CoverArt'
 import { ArrowLeft, ArrowRight, ExternalLink } from '../components/Icons'
 import { Mark } from '../components/Mark'
 import { PageMeta } from '../components/PageMeta'
 import { getNextProject, getProject } from '../data/projects'
+
+function LinkedText({
+  text,
+  links,
+}: {
+  text: string
+  links?: { text: string; href: string }[]
+}) {
+  if (!links?.length) return <>{text}</>
+
+  const pattern = new RegExp(
+    `(${links.map((link) => link.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
+    'g',
+  )
+
+  return (
+    <>
+      {text.split(pattern).map((part, index) => {
+        const link = links.find((item) => item.text === part)
+        return link ? (
+          <Link key={index} className="text-link" to={link.href}>
+            {part}
+          </Link>
+        ) : (
+          <Fragment key={index}>{part}</Fragment>
+        )
+      })}
+    </>
+  )
+}
 
 export function ProjectPage() {
   const { slug } = useParams()
@@ -37,7 +68,9 @@ export function ProjectPage() {
           </div>
           <h1 className="case-title">{project.name}</h1>
           <p className="case-tagline">{project.tagline}</p>
-          <p className="case-intro">{caseStudy.intro}</p>
+          <p className="case-intro">
+            <LinkedText text={caseStudy.intro} links={caseStudy.links} />
+          </p>
         </header>
 
         {project.cover ? (
@@ -79,7 +112,9 @@ export function ProjectPage() {
 
         <section className="case-section">
           <p className="case-eyebrow">Background</p>
-          <p className="case-p">{caseStudy.problem}</p>
+          <p className="case-p">
+            <LinkedText text={caseStudy.problem} links={caseStudy.links} />
+          </p>
           {project.highlight ? (
             <p className="case-highlight">{project.highlight}</p>
           ) : null}

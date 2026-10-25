@@ -30,6 +30,7 @@ export type Project = {
   caseStudy?: {
     intro: string
     problem: string
+    links?: { text: string; href: string }[]
   }
   highlight?: string
 }
@@ -74,9 +75,10 @@ export const projects: Project[] = [
     cover: 'lectry',
     caseStudy: {
       intro:
-        'Lectry turned the material students already had, such as a recorded lecture, photos of slides, or a PDF, into a course with lessons, transcripts, summaries, and quizzes.',
+        'Lectry turned the material students already had, such as a recorded lecture, photos of slides, or a PDF, into a course with lessons, transcripts, summaries, and quizzes. It used TwelveLabs for video understanding.',
       problem:
         'A recorded lecture or a folder of slides is not a course. Turning that material into lessons takes hours of cutting, writing, and structuring. Lectry did that work automatically, so students could study from a course instead of a pile of files.',
+      links: [{ text: 'TwelveLabs', href: '/work/twelvelabs-go-sdk' }],
     },
   },
   {
@@ -127,7 +129,8 @@ export const projects: Project[] = [
       intro:
         'An unofficial Go SDK for the TwelveLabs video understanding API. It wraps indexes, video uploads, tasks, search, and embeddings in typed Go models and context-aware methods.',
       problem:
-        'TwelveLabs had Python and JavaScript clients, but no Go SDK. I wanted a client that felt native to Go: typed models, context-aware methods, and one place for indexes, uploads, tasks, search, and embeddings.',
+        'I was using TwelveLabs in Lectry, which I built in Go, but there was no Go SDK. I wanted a client that felt native to Go: typed models, context-aware methods, and one place for indexes, uploads, tasks, search, and embeddings.',
+      links: [{ text: 'Lectry', href: '/work/lectry' }],
     },
     highlight:
       'After publishing the SDK, I got to talk with the TwelveLabs team about it.',

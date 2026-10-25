@@ -7,7 +7,7 @@ import { Mark } from '../components/Mark'
 import { Reveal } from '../components/Reveal'
 import { SocialLinks } from '../components/SocialLinks'
 import { MoreItem, WorkRow } from '../components/WorkRow'
-import { featuredProjects, moreProjects } from '../data/projects'
+import { featuredProjects, moreProjects, projects } from '../data/projects'
 
 const clusterStyle = (rotate: string, lift: string, z: number) =>
   ({ '--r': rotate, '--y': lift, '--z': z }) as CSSProperties
@@ -18,6 +18,10 @@ const clusterRotations = [
   ['-3deg', '1px', 3],
   ['6deg', '-1px', 4],
 ] as const
+
+const heroProjects = projects.filter(
+  (project) => project.featured || project.slug === 'twelvelabs-go-sdk',
+)
 
 export function Home() {
   // Keep the hero short; the work rows carry the detail.
@@ -38,7 +42,7 @@ export function Home() {
           <p className="hero-line">
             I just build and ship shiii
             <span className="cluster">
-              {featuredProjects.map((project, index) => {
+              {heroProjects.map((project, index) => {
                 const [rotate, lift, z] = clusterRotations[index]
                 return (
                   <Link
