@@ -545,7 +545,7 @@ svg {
 
 .mark--binn,
 .mark--twelvelabs {
-  border-radius: 10px;
+  border-radius: 25%;
 }
 
 .work-row .mark {
@@ -668,7 +668,7 @@ svg {
 
 .more-item {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding: 10px 0;
@@ -676,6 +676,17 @@ svg {
   font-size: 13.5px;
   color: var(--ink-2);
   transition: color 160ms var(--ease);
+}
+
+.more-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.more-main .mark {
+  flex: none;
 }
 
 .more-item:hover {

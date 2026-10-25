@@ -76,7 +76,10 @@ export function MoreItem({ project }: MoreItemProps) {
   const external = href?.startsWith('http')
   const inner = (
     <>
-      <span>{project.name}</span>
+      <span className="more-main">
+        <Mark name={project.mark} size={22} />
+        <span>{project.name}</span>
+      </span>
       <span className="more-meta">
         {project.year}
         {external ? ' ↗' : ''}

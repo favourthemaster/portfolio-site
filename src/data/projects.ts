@@ -105,7 +105,7 @@ export const projects: Project[] = [
     slug: 'twelvelabs-go-sdk',
     name: 'TwelveLabs Go SDK',
     mark: 'twelvelabs',
-    year: '2026',
+    year: '2025',
     category: 'Tool',
     role: 'Go, SDK design',
     status: 'Open source',
