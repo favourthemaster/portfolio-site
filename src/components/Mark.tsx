@@ -18,6 +18,19 @@ const marks: Record<MarkName, MarkSpec> = {
       </g>
     ),
   },
+  coachly: {
+    bg: '#0c1f19',
+    glyph: (
+      <g fill="none" stroke="#2dd4bf" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="20" cy="11.5" r="2.2" fill="#2dd4bf" stroke="none" />
+        <path d="M20 14.5v8" />
+        <path d="M12.5 17.5l7.5 2.5 7.5-2.5" />
+        <path d="M14.5 30l5.5-7.5 5.5 7.5" />
+        <circle cx="10" cy="17.5" r="1.4" fill="#34d399" stroke="none" />
+        <circle cx="30" cy="17.5" r="1.4" fill="#34d399" stroke="none" />
+      </g>
+    ),
+  },
   lectry: {
     bg: '#5a4bff',
     glyph: (
@@ -72,8 +85,13 @@ type MarkProps = {
 }
 
 export function Mark({ name, size = 38, className }: MarkProps) {
-  if (name === 'binn' || name === 'twelvelabs') {
-    const src = name === 'binn' ? '/brand/binn.png' : '/brand/twelvelabs.png'
+  if (name === 'binn' || name === 'twelvelabs' || name === 'coachly') {
+    const src =
+      name === 'binn'
+        ? '/brand/binn.png'
+        : name === 'coachly'
+          ? '/brand/coachly.png'
+          : '/brand/twelvelabs.png'
     return (
       <img
         className={`mark mark--${name} ${className ?? ''}`.trim()}

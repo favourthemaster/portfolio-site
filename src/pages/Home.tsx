@@ -17,6 +17,7 @@ const clusterRotations = [
   ['4deg', '-2px', 2],
   ['-3deg', '1px', 3],
   ['6deg', '-1px', 4],
+  ['-4deg', '2px', 5],
 ] as const
 
 const heroProjects = projects.filter(
@@ -43,7 +44,7 @@ export function Home() {
             I just build and ship shiii
             <span className="cluster">
               {heroProjects.map((project, index) => {
-                const [rotate, lift, z] = clusterRotations[index]
+                const [rotate, lift, z] = clusterRotations[index % clusterRotations.length]
                 return (
                   <Link
                     key={project.slug}
@@ -111,8 +112,8 @@ export function Home() {
             <span className="section-label">About</span>
             <p className="lede">
               I&apos;m a software engineer in Lagos. Binn started because I kept opening TikTok
-              instead of studying. Lectry started because it was hard to turn knowledge into
-              courses.
+              instead of studying. Coachly was an unreleased computer-vision workout coach that
+              taught me how to build low-latency WebRTC pipelines and train models on Modal GPUs.
             </p>
             <Link className="link-arrow" to="/about">
               About me <ArrowRight size={14} />

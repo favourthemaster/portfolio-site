@@ -1,12 +1,13 @@
 export type MarkName =
   | 'binn'
+  | 'coachly'
   | 'lectry'
   | 'agentpay'
   | 'twelvelabs'
   | 'vscode'
   | 'agy'
 
-export type CoverName = 'binn' | 'lectry' | 'agentpay' | 'vscode'
+export type CoverName = 'binn' | 'coachly' | 'lectry' | 'agentpay' | 'vscode'
 
 export type ProjectLink = {
   label: string
@@ -31,6 +32,11 @@ export type Project = {
     intro: string
     problem: string
     links?: { text: string; href: string }[]
+    sections?: {
+      eyebrow: string
+      body: string
+      links?: { text: string; href: string }[]
+    }[]
   }
   highlight?: string
 }
@@ -57,6 +63,51 @@ export const projects: Project[] = [
       problem:
         'Most app blockers use a timer or a password. Neither makes you study. Binn ties the unlock to your notes: answer one question correctly, and the app opens. Miss it, and the lock stays on.',
     },
+  },
+  {
+    slug: 'coachly',
+    name: 'Coachly',
+    mark: 'coachly',
+    year: '2026',
+    category: 'Product',
+    role: 'Computer vision, Flutter, Go, Modal',
+    status: 'Unreleased',
+    tagline: 'Personal AI workout coaching on your schedule.',
+    card: 'On-device AI joint tracking, rep counting, and live form correction from your phone camera.',
+    summary:
+      'A real-time AI fitness coach that used phone camera computer vision to track joints, count reps, and deliver live vocal corrections. Built for on-device calisthenics with zero equipment and zero internet, paired with Modal GPU model distillation for barbell tracking.',
+    links: [],
+    featured: true,
+    cover: 'coachly',
+    caseStudy: {
+      intro:
+        'Coachly was an AI fitness coach built to watch your workout form through a phone camera and deliver live voice corrections while you train. I built the mobile app in Flutter with on-device calisthenics tracking (zero equipment, zero internet), a Go WebRTC relay for sub-100ms video and telemetry streaming, and a cloud pipeline on Modal GPUs to distill heavy SAM3 segmentation masks into compact YOLOv8 models for barbell tracking. I never launched it, but it served as the proving ground for my work with real-time multimodal architectures and cloud GPUs.',
+      problem:
+        'Most fitness apps are static workout logs—they require you to manually enter sets, and cannot tell if your squat depth is valid, if your knees are caving, or if your form is breaking down under fatigue. Getting a dedicated human personal trainer costs $300 to $500 a month. Coachly was designed to turn any smartphone (from a budget Android to an iPhone) into an autonomous personal trainer: zero extra hardware, zero wearables, zero gym equipment, and zero internet latency.',
+      links: [{ text: 'Modal GPUs', href: '/stack' }],
+      sections: [
+        {
+          eyebrow: 'On-Device Vision & Zero-Latency Calisthenics',
+          body: 'On Coachly, the core promise was zero equipment and zero internet: working out in a dorm room or small apartment shouldn’t require special gear or a 5G connection. The Flutter app ran MediaPipe BlazePose and TFLite models locally on the device to track skeletal keypoints, validate range of motion, and count reps with zero network delay.',
+        },
+        {
+          eyebrow: 'Modal GPU Distillation for Heavy Barbell Tracking',
+          body: 'When moving from bodyweight to heavy barbell training, running heavy multi-class segmentation on a mobile CPU/NPU caused thermal throttling. I built an automated data engine on Modal: "Barbell Labeler". It used Segment Anything (SAM3) on Modal A10G GPUs to generate ground-truth masks across thousands of gym frames, and distilled those masks into a tiny YOLOv8-seg model optimized for mobile inference.',
+          links: [{ text: 'Modal', href: '/stack' }],
+        },
+        {
+          eyebrow: 'Sub-100ms Streaming & Go Relays',
+          body: 'For advanced real-time coaching cues, I engineered a low-latency WebRTC relay in Go using pion/webrtc and gorilla/websocket, relaying encoded frames and keypoints between the mobile client and backend evaluation engines. Audio coaching was generated with sub-second speech synthesis—using Breeze TTS deployed on Modal NVIDIA A100s with CUDA Graphs—giving users immediate voice feedback right at the inflection point of a rep.',
+          links: [{ text: 'Breeze TTS', href: '/stack' }],
+        },
+        {
+          eyebrow: 'Why I Shelved It',
+          body: 'I built the entire working pipeline—Flutter mobile client, Go distributed backend, WebRTC streaming, pre-launch waitlist site with Founder’s Pass checkout, and cloud GPU inference. But launching a consumer fitness product requires massive distribution, gym video permission education, and high user acquisition budgets. As a solo engineer, my attention was pulled toward Binn, where the student pain point was immediate and personal. I made the conscious decision to shelve Coachly, but everything I learned about serverless GPUs, WebRTC, and model distillation became the technical backbone for every system I build today.',
+        },
+      ],
+    },
+    highlight:
+      'Shelved before public launch to focus on Binn, but it remains one of the most technically demanding systems I’ve engineered: pion WebRTC relays, WholeBody-133 keypoint math, and serverless GPU distillation.',
   },
   {
     slug: 'lectry',

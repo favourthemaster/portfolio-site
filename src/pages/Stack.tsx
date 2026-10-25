@@ -47,11 +47,15 @@ const groups = [
   {
     key: 'AI & media',
     items: [
-      { name: 'Gemini / Mistral', note: 'Text and vision calls, with fallback between providers.' },
-      { name: 'TwelveLabs', note: 'Video indexing and search for Lectry.' },
-      { name: 'Modal', note: 'On-demand GPUs for TTS and model runs.' },
-      { name: 'ONNX', note: 'Quantized speech models on CPU.' },
-      { name: 'FFmpeg', note: 'Slicing, transcoding, and audio extraction.' },
+      { name: 'Modal GPUs', note: 'Serverless NVIDIA A100, A10G, L4, and T4 compute with attached volumes for rapid model experiments.' },
+      { name: 'Breeze TTS 2', note: 'Ultra-fast voice cloning and voiceovers running on Modal A100s with full CUDA Graph optimizations (--fast-all).' },
+      { name: 'SAM3 → YOLOv8', note: 'Heavy Segment Anything (SAM3) auto-labeling distilled into custom YOLOv8-seg models on Modal A10Gs for Coachly.' },
+      { name: 'FLUX & Qwen-Image', note: 'Serverless image diffusion and typography compositing pipelines (binn-media-engine) on A100 GPUs.' },
+      { name: 'ComfyUI & Wan2', note: 'Persistent cloud workflows and video diffusion models hosted on Modal with dedicated storage volumes.' },
+      { name: 'Whisper & Moonshine', note: 'Low-latency speech-to-text with CTranslate2 and Sherpa-ONNX on T4s and edge servers.' },
+      { name: 'TwelveLabs', note: 'Video indexing, semantic embeddings, and video search for Lectry.' },
+      { name: 'Gemini / Claude', note: 'Multimodal reasoning, structured extraction, and automated fallback.' },
+      { name: 'FFmpeg', note: 'Slicing, transcoding, and audio extraction in Go and Python.' },
     ],
   },
   {
@@ -90,6 +94,25 @@ const principles = [
   },
 ]
 
+const modalWorkflows = [
+  {
+    title: 'Ephemeral, per-second compute over idle VMs.',
+    body: 'I do not pay for idle GPU servers. Modal lets me define container environments directly in Python, request the exact GPU required (from a T4 to an A100 80GB), and tear it down the instant the task ends.',
+  },
+  {
+    title: 'Model distillation for edge and real-time execution.',
+    body: 'For Coachly, running heavy segmentation models on a phone was impossible. I used Modal A10G instances to run SAM3 over gym footage, generate ground-truth masks, and distill that knowledge into lightweight YOLOv8-seg models that run at 60 FPS.',
+  },
+  {
+    title: 'Persistent volume caching for massive weights.',
+    body: 'Downloading 20 GB model checkpoints on every cold start destroys latency. Using Modal Volumes (modal.Volume), checkpoints for FLUX, Qwen, Breeze TTS, and HuggingFace stay mounted and cached across runs.',
+  },
+  {
+    title: 'Testing new model releases as they drop.',
+    body: 'Whenever a new open-weights release arrives—whether it is Wan2 video, Moonshine STT, or new vision transformers—I can spin up a Modal container and benchmark its real latency and memory footprint within 15 minutes.',
+  },
+]
+
 export function Stack() {
   return (
     <>
@@ -124,6 +147,21 @@ export function Stack() {
               </div>
             </section>
           ))}
+
+          <section className="about-section">
+            <h2 className="subhead">How I use Modal GPUs</h2>
+            <div className="principles">
+              {modalWorkflows.map((item, index) => (
+                <div className="principle" key={item.title}>
+                  <span className="principle-num">{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3 className="principle-title">{item.title}</h3>
+                    <p className="principle-body">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
 
           <section className="about-section">
             <h2 className="subhead">How I work</h2>

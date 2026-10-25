@@ -120,6 +120,15 @@ export function ProjectPage() {
           ) : null}
         </section>
 
+        {caseStudy.sections?.map((section, idx) => (
+          <section className="case-section" key={idx}>
+            <p className="case-eyebrow">{section.eyebrow}</p>
+            <p className="case-p">
+              <LinkedText text={section.body} links={section.links} />
+            </p>
+          </section>
+        ))}
+
         <Link className="next-project" to={`/work/${next.slug}`}>
           <span>
             <span className="next-label">Next project</span>

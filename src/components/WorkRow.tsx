@@ -15,6 +15,7 @@ function RowInner({ project, external }: { project: Project; external: boolean }
         <span className="work-name">
           {project.name}
           {project.status === 'Sunset' ? <span className="work-tag">sunset</span> : null}
+          {project.status === 'Unreleased' ? <span className="work-tag">unreleased</span> : null}
         </span>
         <span className="work-desc">{project.card}</span>
       </span>

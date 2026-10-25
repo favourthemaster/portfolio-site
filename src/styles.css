@@ -544,7 +544,8 @@ svg {
 }
 
 .mark--binn,
-.mark--twelvelabs {
+.mark--twelvelabs,
+.mark--coachly {
   border-radius: 25%;
 }
 
@@ -1703,6 +1704,200 @@ svg {
   color: #ff6a2a;
 }
 
+/* coachly */
+
+.cover--coachly {
+  background: #0d0f22;
+  padding: 36px;
+}
+
+.cover--coachly::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  left: 50%;
+  top: -260px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(69, 74, 222, 0.28), transparent 70%);
+  z-index: 0;
+}
+
+.coachly-phone {
+  position: relative;
+  z-index: 2;
+  width: min(340px, 100%);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: #1B1F3B;
+  box-shadow: 0 32px 70px -22px rgba(10, 12, 30, 0.95);
+  display: flex;
+  flex-direction: column;
+}
+
+.coachly-feed {
+  position: relative;
+  height: 250px;
+  background: radial-gradient(circle at 50% 35%, #24294d 0%, #151833 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+.coachly-feed-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.coachly-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+.live-dot {
+  width: 5.5px;
+  height: 5.5px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+.coachly-fps {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: #a3a8e8;
+  background: rgba(69, 74, 222, 0.18);
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+.coachly-skeleton {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.coachly-feed-hud {
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+  margin-top: auto;
+}
+
+.hud-pill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(15, 18, 37, 0.75);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cfd4f5;
+}
+
+.hud-pill--ok {
+  border-color: rgba(69, 74, 222, 0.4);
+  color: #7b80ff;
+  font-weight: 500;
+}
+
+.coachly-panel {
+  background: #0f1225;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.coachly-panel-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.panel-label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 3px;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.panel-reps {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.panel-reps strong {
+  color: #7b80ff;
+}
+
+.panel-reps span {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.35);
+  margin-left: 2px;
+}
+
+.coachly-cue-box {
+  background: rgba(69, 74, 222, 0.12);
+  border-left: 2px solid #454ADE;
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cue-arrow {
+  color: #7b80ff;
+  font-weight: bold;
+}
+
+.cue-text {
+  color: #e5e8ff;
+  font-style: italic;
+}
+
+.coachly-sub-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.4);
+  border-top: 1px dotted rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+
 /* vscode */
 
 .cover--vscode {
@@ -1893,10 +2088,14 @@ svg {
     padding: 24px;
   }
   .cover--binn,
+  .cover--coachly,
   .cover--lectry,
   .cover--agentpay,
   .cover--vscode {
     padding: 22px;
+  }
+  .coachly-metrics {
+    grid-template-columns: 1fr;
   }
   .cover--binn {
     min-height: 330px;
