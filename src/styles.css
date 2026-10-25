@@ -543,7 +543,8 @@ svg {
   border-top-color: transparent;
 }
 
-.mark--binn {
+.mark--binn,
+.mark--twelvelabs {
   border-radius: 10px;
 }
 
@@ -1336,6 +1337,17 @@ svg {
 .case-p strong {
   color: var(--ink-2);
   font-weight: 500;
+}
+
+.case-highlight {
+  margin-top: 22px;
+  padding: 15px 18px;
+  border-left: 2px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--accent-soft);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
 }
 
 

@@ -47,6 +47,10 @@ const marks: Record<MarkName, MarkSpec> = {
       </g>
     ),
   },
+  twelvelabs: {
+    bg: '#191811',
+    glyph: null,
+  },
   agy: {
     bg: '#23221d',
     glyph: (
@@ -68,11 +72,12 @@ type MarkProps = {
 }
 
 export function Mark({ name, size = 38, className }: MarkProps) {
-  if (name === 'binn') {
+  if (name === 'binn' || name === 'twelvelabs') {
+    const src = name === 'binn' ? '/brand/binn.png' : '/brand/twelvelabs.png'
     return (
       <img
-        className={`mark mark--binn ${className ?? ''}`.trim()}
-        src="/brand/binn.png"
+        className={`mark mark--${name} ${className ?? ''}`.trim()}
+        src={src}
         width={size}
         height={size}
         alt=""

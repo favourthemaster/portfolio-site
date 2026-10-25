@@ -2,6 +2,7 @@ export type MarkName =
   | 'binn'
   | 'lectry'
   | 'agentpay'
+  | 'twelvelabs'
   | 'vscode'
   | 'agy'
 
@@ -30,6 +31,7 @@ export type Project = {
     intro: string
     problem: string
   }
+  highlight?: string
 }
 
 export const projects: Project[] = [
@@ -100,6 +102,37 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'twelvelabs-go-sdk',
+    name: 'TwelveLabs Go SDK',
+    mark: 'twelvelabs',
+    year: '2026',
+    category: 'Tool',
+    role: 'Go, SDK design',
+    status: 'Open source',
+    tagline: 'Video understanding, from Go.',
+    card: 'A typed Go client for the TwelveLabs video understanding API.',
+    summary:
+      'An unofficial Go SDK for TwelveLabs. It covers indexes, video uploads, tasks, search, and embeddings with typed models and context-aware methods.',
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/favourthemaster/twelvelabs-go-sdk',
+      },
+      {
+        label: 'pkg.go.dev',
+        href: 'https://pkg.go.dev/github.com/favourthemaster/twelvelabs-go-sdk',
+      },
+    ],
+    caseStudy: {
+      intro:
+        'An unofficial Go SDK for the TwelveLabs video understanding API. It wraps indexes, video uploads, tasks, search, and embeddings in typed Go models and context-aware methods.',
+      problem:
+        'TwelveLabs had Python and JavaScript clients, but no Go SDK. I wanted a client that felt native to Go: typed models, context-aware methods, and one place for indexes, uploads, tasks, search, and embeddings.',
+    },
+    highlight:
+      'After publishing the SDK, I got to talk with the TwelveLabs team about it.',
+  },
+  {
     slug: 'vscode-android-emulator',
     name: 'Android Emulator for VS Code',
     mark: 'vscode',
@@ -156,6 +189,7 @@ export const getNextProject = (slug: string): Project => {
 }
 
 export const moreProjects = [
+  'twelvelabs-go-sdk',
   'vscode-android-emulator',
   'agy-remote',
 ]

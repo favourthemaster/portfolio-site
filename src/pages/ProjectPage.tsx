@@ -80,6 +80,9 @@ export function ProjectPage() {
         <section className="case-section">
           <p className="case-eyebrow">Background</p>
           <p className="case-p">{caseStudy.problem}</p>
+          {project.highlight ? (
+            <p className="case-highlight">{project.highlight}</p>
+          ) : null}
         </section>
 
         <Link className="next-project" to={`/work/${next.slug}`}>
