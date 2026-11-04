@@ -274,10 +274,10 @@ export const projects: Project[] = [
     category: 'Tool',
     role: 'Go, Telegram Bot API, SQLite, agy CLI',
     status: 'Live on EC2',
-    tagline: 'Drive your coding agent from Telegram.',
-    card: 'A Go daemon connecting Telegram to an always-on coding agent with live streaming, activity cards, and native tables.',
+    tagline: 'Talk to your coding agent from Telegram.',
+    card: 'A Go daemon that lets you text, stream, and control your terminal coding agent from your phone.',
     summary:
-      'A single-binary Go daemon running on an AWS EC2 coordinator that bridges Telegram directly to the Antigravity CLI (agy). Streams tokens live, renders inline tool progress, formats Bot API 10.1 native Markdown tables, and gives interactive [Allow]/[Deny] and force-run buttons.',
+      'A single-binary Go daemon on AWS EC2 that connects Telegram directly to the Antigravity CLI (agy). Live token streaming, inline approval buttons, voice notes, and process tree controls.',
     links: [
       {
         label: 'GitHub',
@@ -287,39 +287,39 @@ export const projects: Project[] = [
     cover: 'agentbridge',
     caseStudy: {
       intro:
-        'agent-bridge is a high-performance Go daemon that connects Telegram directly to a persistent, always-running Antigravity (agy) coding agent session on an AWS EC2 coordinator node. When you step away from your computer, you can text instructions, watch tokens stream and tools execute live in-place, approve dangerous commands with inline buttons, force-run queued tasks, and review native Bot API 10.1 tables right on your phone.',
+        'I run coding agents in the terminal on my computer. The problem is simple: when I leave my desk or close my laptop, the agent stops working. I built agent-bridge so I could text my agent from Telegram on my phone—have it run tests, fix bugs, answer voice notes, and approve risky terminal commands while I was away.',
       problem:
-        'Coding agents run in terminals on laptops or remote servers. When you close your laptop lid or leave your desk, you lose access to the session. Existing bridges give agents a naive send_telegram() tool, which causes duplicate messages, hallucinated self-talk loops, and deadlocks when an agent prompts for permission. Furthermore, standard Telegram HTML rejects <table> tags, turning structured outputs into unreadable blocks of code on mobile screens.',
+        'Most people try to connect agents to chat apps by giving the agent a "send_telegram" tool. It fails immediately: the agent writes an answer in the terminal, then calls the tool with the same text, spamming you with duplicates or hallucinating conversations with itself. If the agent asks for permission to run a command, you have no way to answer from your phone. And if a command hangs, the whole session gets stuck.',
       sections: [
         {
           eyebrow: 'The Single Reply-Path Architecture',
           body:
-            'Rather than giving the AI agent a Telegram tool that causes duplicate messages and token-burning self-talk loops, agent-bridge wraps the agent CLI inside an interactive pseudo-terminal (PTY) and JSON-RPC stream runner. The bridge owns the entire lifecycle: incoming user messages are queued in SQLite, fed into agy turns, and streamed back over a single deterministic output channel.',
+            'Instead of giving the agent an MCP tool to message me, I built a Go daemon that wraps the agent process directly. You text Telegram, the daemon feeds the prompt into the agent, and the agent streams output back to Telegram. Because there is only one output path owned entirely by the daemon, duplicate messages and self-talk loops are physically impossible.',
         },
         {
-          eyebrow: 'Live Token Streaming & Throttled Telegram Edits',
+          eyebrow: 'Taming TUI Freezes & Live Token Streaming',
           body:
-            'agent-bridge parses agy stream-json NDJSON events in real time. As Gemini or Claude streams tokens, an internal stream buffer accumulates text deltas and flushes edits to Telegram every 750ms. This keeps the mobile chat feeling instant and responsive while strictly obeying Telegram Bot API rate limits (1 edit/sec per chat).',
+            'My first attempt ran the agent inside a pseudo-terminal (PTY). It was a disaster: ANSI escape sequences and terminal cursor controls broke stdout, and approval prompts locked the daemon. I switched to running the agent in headless stream-json mode over NDJSON. To make it feel responsive without hitting Telegram rate limits, I wrote an in-memory stream buffer that flushes token edits to Telegram every 750 milliseconds.',
         },
         {
-          eyebrow: 'Interactive Permission Approvals & Queue Controls',
+          eyebrow: 'The "Do You Like Coffee?" Incident & Voice Notes',
           body:
-            'When agy attempts a sensitive action like package installation or directory removal, the bridge pauses execution and sends an inline Telegram keyboard with [Allow] and [Deny] buttons. For rapid multitasking, incoming messages sent while the agent is busy are queued with [⚡ Force Run Now] and [🗑 Cancel] buttons, allowing immediate task interruption and queue reprioritization.',
+            'One afternoon I sent a voice note asking "Do you like coffee?". Instead of answering, the agent treated the audio file like a forensic crime scene: it ran ffprobe, file, ls, and custom Python scripts to analyze the Opus audio encoding, then asked if I wanted the file converted. I rewrote the media pipeline so voice notes are injected as spoken conversational turns—now the agent just listens and replies naturally.',
         },
         {
-          eyebrow: 'Bot API 10.1 Rich Messages & Native Markdown Tables',
+          eyebrow: 'Stopping Runaway Tools & The Force-Run Button',
           body:
-            'Traditional Telegram messages with parse_mode=HTML reject <table> tags. agent-bridge utilizes Telegram Bot API 10.1 Rich Messages (sendRichMessage and editMessageText with rich_message), rendering genuine bordered and striped GitHub Flavored Markdown tables, collapsible <blockquote expandable> thinking traces, and payloads up to 32,768 UTF-8 characters.',
+            'When an agent ran a shell command that hung—like a curl without connection timeouts—the entire session deadlocked. Any message sent from my phone was stuck in "Queued". I fixed this in two passes: first, placing the agent in a dedicated POSIX process group so /stop kills all child processes instantly; second, attaching inline [⚡ Force Run Now] and [🗑 Cancel] buttons to queued messages, so I can interrupt a stuck job and execute a new instruction with a single tap.',
         },
         {
-          eyebrow: 'Multimodal Routing & InstaBox Sandbox Delegation',
+          eyebrow: 'Fixing Broken Mobile Tables & EC2 Deployment',
           body:
-            'Voice notes sent via Telegram are tagged and passed with contextual instructions, prompting the agent to listen and reply conversationally rather than running diagnostic file inspections. To prevent system corruption on the host, heavy build tasks, browser tests, and Android testing are delegated to isolated InstaBox sandboxes with port-forwarded ADB.',
+            'Markdown tables generated by the agent rendered as broken, unaligned monospace text on phone screens because standard Telegram HTML rejects <table> tags. I migrated final turn delivery to Telegram Bot API 10.1 Rich Messages, which renders native striped tables and expandable thinking traces with a 32 KB limit. The daemon runs 24/7 as a systemd service on an AWS EC2 instance connected via Tailscale.',
         },
       ],
     },
     highlight:
-      'Sub-second live token streaming to Telegram, zero duplicate messages, native Bot API 10.1 table rendering, and single-tap permission approvals from any phone.',
+      'Zero duplicate messages, live 750ms token streaming, voice notes as real conversation, and single-tap permission approvals from anywhere on Telegram.',
   },
 ]
 
