@@ -190,6 +190,27 @@ export function CoverArt({ variant }: CoverArtProps) {
     )
   }
 
+  if (variant === 'memoryhub') {
+    return (
+      <div className="cover cover--memoryhub cover--dark">
+        <div className="terminal">
+          <div className="terminal-bar">ai-memory-hub · mcp streamable http</div>
+          <pre>
+            <span className="t-dim">$</span> <span className="t-brand">tools</span>.search({'{'}
+            {'\n'}  query: <span className="t-str">"pose thresholds"</span>,
+            {'\n'}  project: <span className="t-str">"coachly"</span>
+            {'\n'}{'}'})
+            {'\n\n'}<span className="t-ok">✓</span> <span className="t-key">match</span> 5.68ms (p95) · D1 FTS5 BM25 ranked
+            {'\n'}<span className="t-dim">›</span> [id: 42] <span className="t-str">"Use YAML for Go config; thresholds in config/coachly.yaml"</span>
+            {'\n\n'}<span className="t-dim">$</span> <span className="t-brand">tools</span>.recall({'{'} project: <span className="t-str">"binn"</span>, limit: <span className="t-num">5</span> {'}'})
+            {'\n'}<span className="t-ok">✓</span> 4KB context budget · 0 superseded · synced across agents
+          </pre>
+        </div>
+        <span className="cover-label">ai-memory-hub · Cloudflare Workers + D1 · 2026</span>
+      </div>
+    )
+  }
+
   if (variant === 'vscode') {
     return (
       <div className="cover cover--vscode">

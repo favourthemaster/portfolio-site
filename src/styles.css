@@ -1642,6 +1642,26 @@ svg {
   z-index: 0;
 }
 
+/* memoryhub */
+
+.cover--memoryhub {
+  background: #0e0e11;
+  padding: 40px;
+}
+
+.cover--memoryhub::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  left: 50%;
+  top: -300px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.16), transparent 65%);
+  z-index: 0;
+}
+
 .terminal {
   position: relative;
   z-index: 2;
@@ -2091,6 +2111,7 @@ svg {
   .cover--coachly,
   .cover--lectry,
   .cover--agentpay,
+  .cover--memoryhub,
   .cover--vscode {
     padding: 22px;
   }

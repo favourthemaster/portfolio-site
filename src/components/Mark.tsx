@@ -75,6 +75,21 @@ const marks: Record<MarkName, MarkSpec> = {
       </g>
     ),
   },
+  memoryhub: {
+    bg: '#141416',
+    glyph: (
+      <g>
+        <circle cx="20" cy="20" r="5.6" fill="none" stroke="#f97316" strokeWidth="1.2" opacity=".4" />
+        <line x1="20" y1="20" x2="20" y2="11.5" stroke="#71717a" strokeWidth="1.2" />
+        <line x1="20" y1="20" x2="12.5" y2="26.5" stroke="#71717a" strokeWidth="1.2" />
+        <line x1="20" y1="20" x2="27.5" y2="26.5" stroke="#71717a" strokeWidth="1.2" />
+        <circle cx="20" cy="20" r="2.4" fill="#f97316" />
+        <circle cx="20" cy="11.5" r="1.8" fill="#e4e4e7" />
+        <circle cx="12.5" cy="26.5" r="1.8" fill="#e4e4e7" />
+        <circle cx="27.5" cy="26.5" r="1.8" fill="#e4e4e7" />
+      </g>
+    ),
+  },
 
 }
 

@@ -63,7 +63,7 @@ const groups = [
     items: [
       { name: 'Docker', note: 'Local environments and container deploys.' },
       { name: 'GitHub Actions', note: 'Tests, signed Android bundles, tags, and releases.' },
-      { name: 'Cloudflare', note: 'R2 storage and Pages deploys.' },
+      { name: 'Cloudflare', note: 'Workers, D1 SQLite + FTS5, R2 blob storage, and Pages.' },
       { name: 'Vercel + Supabase', note: 'Hosting and Postgres for small products.' },
       { name: 'AWS', note: 'S3 and EC2 for larger deployments.' },
       { name: 'Linux', note: 'Servers, shells, and system logs.' },

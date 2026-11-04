@@ -6,8 +6,15 @@ export type MarkName =
   | 'twelvelabs'
   | 'vscode'
   | 'agy'
+  | 'memoryhub'
 
-export type CoverName = 'binn' | 'coachly' | 'lectry' | 'agentpay' | 'vscode'
+export type CoverName =
+  | 'binn'
+  | 'coachly'
+  | 'lectry'
+  | 'agentpay'
+  | 'vscode'
+  | 'memoryhub'
 
 export type ProjectLink = {
   label: string
@@ -153,6 +160,57 @@ export const projects: Project[] = [
       problem:
         'An agent can already browse a store and fill a checkout. It still cannot pay safely. A card number gives it too much access, and a crypto wallet does not help with Nigerian bank transfers. The agent needs a small, controlled way to move money. The owner needs limits that do not depend on the model behaving.',
     },
+  },
+  {
+    slug: 'ai-memory-hub',
+    name: 'ai-memory-hub',
+    mark: 'memoryhub',
+    year: '2026',
+    category: 'Tool',
+    role: 'TypeScript, Cloudflare Workers, D1 FTS5, R2',
+    status: 'Open source',
+    tagline: 'One memory for every AI agent on every device.',
+    card: 'A serverless MCP memory hub with sub-6ms BM25 search across Claude, Cursor, and OpenCode.',
+    summary:
+      'A private, free, cross-agent memory layer over Streamable HTTP running on Cloudflare Workers and D1 with SQLite FTS5 BM25 search, 4KB context safety capping, and R2 blob offloading.',
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/favourthemaster/ai-memory-hub',
+      },
+    ],
+    featured: true,
+    cover: 'memoryhub',
+    caseStudy: {
+      intro:
+        'ai-memory-hub is a serverless Model Context Protocol (MCP) server that gives every AI agent on every device one shared, persistent memory. I use Claude Desktop on macOS, Cursor on Linux, and OpenCode or CLI agents on remote VPSs. Before this, every agent operated in a silo—decisions settled in one window were contradicted in another an hour later. ai-memory-hub runs 100% free on Cloudflare Workers, D1 SQLite, and R2, speaking standard Streamable HTTP JSON-RPC 2.0 with sub-6ms BM25 search.',
+      problem:
+        'Hosted memory platforms charge recurring subscriptions for personal tools, while local SQLite or Markdown files cannot sync safely across multiple machines or mobile clients without manual git pushes and conflict resolution. Cloud storage like Google Drive lacks ranked full-text search and introduces slow, multi-second round-trips. I needed a private, single-tenant, zero-cost edge service that any MCP-compliant agent could query in milliseconds without blowing its prompt context.',
+      sections: [
+        {
+          eyebrow: 'Streamable HTTP & The Minimal MCP Protocol',
+          body:
+            'Rather than pulling in heavy SDKs that inflate bundle size past the 1 MB Cloudflare Workers free-tier limit, I implemented a zero-dependency JSON-RPC 2.0 MCP handler over Streamable HTTP. It exposes four strict tools: save_memory, search, recall, and read_blob. Every incoming request is authenticated with a single-tenant bearer token. A session starts with recall(project, limit=20) to fetch the newest active facts and decisions in under 4 KB, preventing context window bloat.',
+        },
+        {
+          eyebrow: 'Edge SQLite FTS5 & Sub-6ms BM25 Ranking',
+          body:
+            'Memory search runs directly on Cloudflare D1 using an external-content SQLite FTS5 virtual table with the Porter stemmer and unicode61 tokenizer. Instead of naive LIKE substring matching, queries are sanitized into quoted tokens with an automatic AND-to-OR fallback. In local and edge benchmarks across 10,000 real-world developer memories, search delivered a p50 latency of 1.83 ms and a p95 of 5.68 ms.',
+        },
+        {
+          eyebrow: 'Pattern B: Context Safety & R2 Blob Offloading',
+          body:
+            'AI agents frequently attempt to dump massive log traces, raw JSON payloads, or multi-page documentation into memory, which ruins prompt budgets on subsequent recalls. ai-memory-hub enforces a hard 4 KB context ceiling. Any memory payload exceeding 3 KB (or containing structured attachments) is automatically offloaded to Cloudflare R2 with SHA-256 content deduplication. The primary D1 table stores a clean snippet and pointer, allowing agents to selectively retrieve the full content with read_blob only when needed.',
+        },
+        {
+          eyebrow: 'Free-Tier Economics & Zero Cloud Bills',
+          body:
+            'The entire service runs inside Cloudflare’s free tier limits: 100,000 Worker requests per day, 5,000,000 D1 rows read per day, and 5 GB of storage. Daily quotas reset at 00:00 UTC. If limits are reached, the Worker catches the engine failure and returns a structured quota_exceeded error with the exact reset timestamp, prompting agents to pause gracefully rather than spamming retries.',
+        },
+      ],
+    },
+    highlight:
+      'Zero monthly cloud cost, sub-6ms p95 search across 10,000 memories, and native Streamable HTTP compatibility across Claude, Cursor, and custom CLI agents.',
   },
   {
     slug: 'twelvelabs-go-sdk',
