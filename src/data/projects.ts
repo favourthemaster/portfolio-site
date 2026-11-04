@@ -5,7 +5,7 @@ export type MarkName =
   | 'agentpay'
   | 'twelvelabs'
   | 'vscode'
-  | 'agy'
+  | 'agentbridge'
   | 'memoryhub'
 
 export type CoverName =
@@ -266,20 +266,24 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'agy-remote',
-    name: 'agy-remote',
-    mark: 'agy',
+    slug: 'agent-bridge',
+    name: 'agent-bridge',
+    mark: 'agentbridge',
     year: '2026',
     category: 'Tool',
-    role: 'Go, Flutter',
-    status: 'Local build',
-    tagline: 'Drive a coding agent from your phone.',
-    card: 'A 12 MB Go daemon for driving the Antigravity CLI from a phone.',
+    role: 'Go, Telegram Bot API, SQLite, agy CLI',
+    status: 'Live on EC2',
+    tagline: 'Drive your coding agent from Telegram.',
+    card: 'A Go daemon connecting Telegram to a continuous coding agent with live streaming, activity cards, and native tables.',
     summary:
-      'A WebSocket daemon that streams thinking traces and tool execution to a mobile client over Tailscale. Small enough to leave running on a VPS.',
-    links: [],
+      'A single-binary Go daemon running on an AWS EC2 coordinator that bridges Telegram directly to the Antigravity CLI (agy). Streams tokens live, renders inline tool progress, formats Bot API 10.1 native Markdown tables, and gives interactive [Allow]/[Deny] and force-run buttons.',
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/favourthemaster/agent-bridge',
+      },
+    ],
   },
-
 ]
 
 export const featuredProjects = projects.filter((project) => project.featured)
@@ -303,7 +307,7 @@ export const getNextProject = (slug: string): Project => {
 export const moreProjects = [
   'twelvelabs-go-sdk',
   'vscode-android-emulator',
-  'agy-remote',
+  'agent-bridge',
 ]
   .map((slug) => getProject(slug))
   .filter((project): project is Project => Boolean(project))

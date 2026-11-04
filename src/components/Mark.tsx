@@ -64,14 +64,16 @@ const marks: Record<MarkName, MarkSpec> = {
     bg: '#191811',
     glyph: null,
   },
-  agy: {
-    bg: '#23221d',
+  agentbridge: {
+    bg: '#161e2e',
     glyph: (
-      <g>
-        <circle cx="20" cy="20" r="8.6" fill="none" stroke="#e8e1ca" strokeWidth="1.7" />
-        <circle cx="20" cy="20" r="2.1" fill="#e8e1ca" />
-        <circle cx="27.2" cy="12.4" r="2" fill="#ff7a45" />
-        <path d="m11.6 28.4 16.8-16.8" stroke="#e8e1ca" strokeWidth="1" opacity=".22" />
+      <g fill="none" stroke="#38bdf8" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 26h20" stroke="#64748b" strokeWidth="1.2" />
+        <path d="M12 26c2.5-7 13.5-7 16 0" />
+        <circle cx="12" cy="26" r="1.6" fill="#38bdf8" stroke="none" />
+        <circle cx="28" cy="26" r="1.6" fill="#38bdf8" stroke="none" />
+        <circle cx="20" cy="19.5" r="2" fill="#0ea5e9" stroke="none" />
+        <path d="M20 12v5.5" stroke="#38bdf8" strokeDasharray="1.5 2" />
       </g>
     ),
   },
