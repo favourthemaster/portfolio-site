@@ -211,6 +211,26 @@ export function CoverArt({ variant }: CoverArtProps) {
     )
   }
 
+  if (variant === 'agentbridge') {
+    return (
+      <div className="cover cover--agentbridge cover--dark">
+        <div className="terminal">
+          <div className="terminal-bar">agent-bridge · telegram daemon</div>
+          <pre>
+            <span className="t-dim">$</span> agent-bridge -config config.yaml
+            {'\n'}<span className="t-ok">✓</span> Telegram Bot connected (@favour_agent_bot)
+            {'\n'}<span className="t-ok">✓</span> agy session hot in memory · single-path PTY
+            {'\n\n'}<span className="t-dim">›</span> [18:31:50] Received: <span className="t-str">"Run test suite on coachly"</span>
+            {'\n'}<span className="t-ok">▶</span> live stream · 750ms throttled token edits
+            {'\n'}<span className="t-ok">⚡</span> inline approval: <span className="t-key">rm -rf build/</span> → <span className="t-ok">[Approved]</span>
+            {'\n'}<span className="t-ok">✓</span> rich response: 32KB payload · Bot API 10.1 native tables
+          </pre>
+        </div>
+        <span className="cover-label">agent-bridge · Go + Telegram Bot API · 2026</span>
+      </div>
+    )
+  }
+
   if (variant === 'vscode') {
     return (
       <div className="cover cover--vscode">

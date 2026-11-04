@@ -15,6 +15,7 @@ export type CoverName =
   | 'agentpay'
   | 'vscode'
   | 'memoryhub'
+  | 'agentbridge'
 
 export type ProjectLink = {
   label: string
@@ -274,7 +275,7 @@ export const projects: Project[] = [
     role: 'Go, Telegram Bot API, SQLite, agy CLI',
     status: 'Live on EC2',
     tagline: 'Drive your coding agent from Telegram.',
-    card: 'A Go daemon connecting Telegram to a continuous coding agent with live streaming, activity cards, and native tables.',
+    card: 'A Go daemon connecting Telegram to an always-on coding agent with live streaming, activity cards, and native tables.',
     summary:
       'A single-binary Go daemon running on an AWS EC2 coordinator that bridges Telegram directly to the Antigravity CLI (agy). Streams tokens live, renders inline tool progress, formats Bot API 10.1 native Markdown tables, and gives interactive [Allow]/[Deny] and force-run buttons.',
     links: [
@@ -283,6 +284,42 @@ export const projects: Project[] = [
         href: 'https://github.com/favourthemaster/agent-bridge',
       },
     ],
+    cover: 'agentbridge',
+    caseStudy: {
+      intro:
+        'agent-bridge is a high-performance Go daemon that connects Telegram directly to a persistent, always-running Antigravity (agy) coding agent session on an AWS EC2 coordinator node. When you step away from your computer, you can text instructions, watch tokens stream and tools execute live in-place, approve dangerous commands with inline buttons, force-run queued tasks, and review native Bot API 10.1 tables right on your phone.',
+      problem:
+        'Coding agents run in terminals on laptops or remote servers. When you close your laptop lid or leave your desk, you lose access to the session. Existing bridges give agents a naive send_telegram() tool, which causes duplicate messages, hallucinated self-talk loops, and deadlocks when an agent prompts for permission. Furthermore, standard Telegram HTML rejects <table> tags, turning structured outputs into unreadable blocks of code on mobile screens.',
+      sections: [
+        {
+          eyebrow: 'The Single Reply-Path Architecture',
+          body:
+            'Rather than giving the AI agent a Telegram tool that causes duplicate messages and token-burning self-talk loops, agent-bridge wraps the agent CLI inside an interactive pseudo-terminal (PTY) and JSON-RPC stream runner. The bridge owns the entire lifecycle: incoming user messages are queued in SQLite, fed into agy turns, and streamed back over a single deterministic output channel.',
+        },
+        {
+          eyebrow: 'Live Token Streaming & Throttled Telegram Edits',
+          body:
+            'agent-bridge parses agy stream-json NDJSON events in real time. As Gemini or Claude streams tokens, an internal stream buffer accumulates text deltas and flushes edits to Telegram every 750ms. This keeps the mobile chat feeling instant and responsive while strictly obeying Telegram Bot API rate limits (1 edit/sec per chat).',
+        },
+        {
+          eyebrow: 'Interactive Permission Approvals & Queue Controls',
+          body:
+            'When agy attempts a sensitive action like package installation or directory removal, the bridge pauses execution and sends an inline Telegram keyboard with [Allow] and [Deny] buttons. For rapid multitasking, incoming messages sent while the agent is busy are queued with [⚡ Force Run Now] and [🗑 Cancel] buttons, allowing immediate task interruption and queue reprioritization.',
+        },
+        {
+          eyebrow: 'Bot API 10.1 Rich Messages & Native Markdown Tables',
+          body:
+            'Traditional Telegram messages with parse_mode=HTML reject <table> tags. agent-bridge utilizes Telegram Bot API 10.1 Rich Messages (sendRichMessage and editMessageText with rich_message), rendering genuine bordered and striped GitHub Flavored Markdown tables, collapsible <blockquote expandable> thinking traces, and payloads up to 32,768 UTF-8 characters.',
+        },
+        {
+          eyebrow: 'Multimodal Routing & InstaBox Sandbox Delegation',
+          body:
+            'Voice notes sent via Telegram are tagged and passed with contextual instructions, prompting the agent to listen and reply conversationally rather than running diagnostic file inspections. To prevent system corruption on the host, heavy build tasks, browser tests, and Android testing are delegated to isolated InstaBox sandboxes with port-forwarded ADB.',
+        },
+      ],
+    },
+    highlight:
+      'Sub-second live token streaming to Telegram, zero duplicate messages, native Bot API 10.1 table rendering, and single-tap permission approvals from any phone.',
   },
 ]
 
