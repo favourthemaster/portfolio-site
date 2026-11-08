@@ -8,13 +8,12 @@ type MarkSpec = {
 
 const marks: Record<MarkName, MarkSpec> = {
   binn: {
-    bg: '#1b2149',
+    bg: '#5651a1',
     glyph: (
-      <g fill="none" stroke="#f4f2ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="11.2" y="14.2" width="12.6" height="13.2" rx="3.2" />
-        <path d="M23.8 18.4v-3.1a4 4 0 0 1 8 0v2.2" />
-        <circle cx="17.5" cy="20.8" r="1.45" fill="#f4f2ff" stroke="none" />
-        <path d="M17.5 22.3v2" />
+      <g transform="translate(8, 8)">
+        <circle cx="7.2" cy="9.8" r="1.9" fill="#2e2b2b" />
+        <circle cx="16.8" cy="9.8" r="1.9" fill="#2e2b2b" />
+        <path d="M 9.5 13.8 C 10.3 16.0, 13.7 16.0, 14.5 13.8" stroke="#2e2b2b" strokeWidth="2.1" strokeLinecap="round" fill="none" />
       </g>
     ),
   },
