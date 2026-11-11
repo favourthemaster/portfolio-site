@@ -41,7 +41,7 @@ export function Home() {
             <img className="avatar" src="/avatar.jpg" alt="" width="460" height="460" />
           </p>
           <p className="hero-line">
-            I just build and ship shiii
+            I build and ship products end to end
             <span className="cluster">
               {heroProjects.map((project, index) => {
                 const [rotate, lift, z] = clusterRotations[index % clusterRotations.length]
