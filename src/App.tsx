@@ -7,19 +7,25 @@ import { ProjectPage } from './pages/ProjectPage'
 import { Stack } from './pages/Stack'
 import { Work } from './pages/Work'
 
+export function AppRoutes() {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="work" element={<Work />} />
+        <Route path="work/:slug" element={<ProjectPage />} />
+        <Route path="stack" element={<Stack />} />
+        <Route path="about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  )
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="work" element={<Work />} />
-          <Route path="work/:slug" element={<ProjectPage />} />
-          <Route path="stack" element={<Stack />} />
-          <Route path="about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   )
 }
