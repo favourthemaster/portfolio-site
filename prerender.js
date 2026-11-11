@@ -1,11 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createServer } from 'vite'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.resolve(__dirname, 'dist')
 const templatePath = path.resolve(distDir, 'index.html')
-const ssrEntryPath = path.resolve(__dirname, 'dist-ssr', 'entry-server.js')
 
 function escapeAttr(str) {
   return str
@@ -84,13 +84,23 @@ async function main() {
     process.exit(1)
   }
 
-  if (!fs.existsSync(ssrEntryPath)) {
-    console.error(`SSR entry bundle not found at ${ssrEntryPath}`)
-    process.exit(1)
-  }
-
   const template = fs.readFileSync(templatePath, 'utf8')
-  const { render, getRoutes } = await import(ssrEntryPath)
+
+  // Spin up Vite in SSR middleware mode to load entry-server in-memory
+  const vite = await createServer({
+    server: { middlewareMode: true },
+    appType: 'custom',
+  })
+
+  let render
+  let getRoutes
+  try {
+    const mod = await vite.ssrLoadModule('/src/entry-server.tsx')
+    render = mod.render
+    getRoutes = mod.getRoutes
+  } finally {
+    await vite.close()
+  }
 
   const routes = getRoutes()
   const allRoutes = [...routes, '/404']
@@ -140,10 +150,10 @@ async function main() {
       const cleanPath = route.replace(/^\//, '')
       const dirPath = path.resolve(distDir, cleanPath)
       fs.mkdirSync(dirPath, { recursive: true })
-      
+
       const indexPath = path.resolve(dirPath, 'index.html')
       const flatHtmlPath = path.resolve(distDir, `${cleanPath}.html`)
-      
+
       fs.writeFileSync(indexPath, pageHtml, 'utf8')
       fs.writeFileSync(flatHtmlPath, pageHtml, 'utf8')
       console.log(`  ✓ ${route} -> dist/${cleanPath}/index.html & dist/${cleanPath}.html`)
@@ -174,11 +184,7 @@ ${sitemapUrls.join('\n')}
 `
 
   fs.writeFileSync(path.resolve(distDir, 'sitemap.xml'), sitemapXml, 'utf8')
-  const publicSitemap = path.resolve(__dirname, 'public', 'sitemap.xml')
-  if (fs.existsSync(publicSitemap)) {
-    fs.writeFileSync(publicSitemap, sitemapXml, 'utf8')
-  }
-  console.log(`  ✓ Updated sitemap.xml with ${routes.length} routes.`)
+  console.log(`  ✓ Updated dist/sitemap.xml with ${routes.length} routes.`)
 }
 
 main().catch((err) => {

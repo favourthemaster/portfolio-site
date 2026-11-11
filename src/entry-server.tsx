@@ -1,5 +1,5 @@
 import { renderToString } from 'react-dom/server'
-import { StaticRouter } from 'react-router'
+import { StaticRouter } from 'react-router-dom'
 import { AppRoutes } from './App'
 import { projects, getProject } from './data/projects'
 
